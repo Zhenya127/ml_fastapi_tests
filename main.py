@@ -15,6 +15,20 @@ classifier = pipeline("sentiment-analysis")
 def root():
     return {"message": "Hello World"}
 
+@app.get("/api")
+async def api():
+    return await [
+        {
+            "path": "/",
+            "description": "greetings"
+        },
+        {
+            "path": "/predict/",
+            "description": "defenition of tonality",
+            "request": "I like machine learning!",
+            "response": "POSITIVE"
+        }
+    ]
 
 @app.post("/predict/")
 def predict(item: Item):
